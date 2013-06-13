@@ -2,7 +2,8 @@ class SkillsController < ApplicationController
   # GET /skills
   # GET /skills.json
   def index
-    @skills = Skill.all
+    @domain = Domain.find(params[:domain_id])
+    @skills = @domain.skills
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,8 @@ class SkillsController < ApplicationController
   # GET /skills/1
   # GET /skills/1.json
   def show
-    @skill = Skill.find(params[:id])
+    @domain = Domain.find(params[:domain_id])
+    @skill = @domain.skills.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,8 @@ class SkillsController < ApplicationController
   # GET /skills/new
   # GET /skills/new.json
   def new
-    @skill = Skill.new
+    @domain = Domain.find(params[:domain_id])
+    @skill = @domain.skills.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +37,19 @@ class SkillsController < ApplicationController
 
   # GET /skills/1/edit
   def edit
-    @skill = Skill.find(params[:id])
+    @domain = Domain.find(params[:domain_id])
+    @skill = @domain.skills.find(params[:id])
   end
 
   # POST /skills
   # POST /skills.json
   def create
-    @skill = Skill.new(params[:skill])
+    @domain = Domain.find(params[:domain_id])
+    @skill = @domain.skills.build(params[:skill])
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+        format.html { redirect_to domain_skill_url(@domain, @skill), notice: 'Skill was successfully created.' }
         format.json { render json: @skill, status: :created, location: @skill }
       else
         format.html { render action: "new" }
@@ -56,11 +61,12 @@ class SkillsController < ApplicationController
   # PUT /skills/1
   # PUT /skills/1.json
   def update
-    @skill = Skill.find(params[:id])
+    @domain = Domain.find(params[:domain_id])
+    @skill = @domain.skills.find(params[:id])
 
     respond_to do |format|
       if @skill.update_attributes(params[:skill])
-        format.html { redirect_to @skill, notice: 'Skill was successfully updated.' }
+        format.html { redirect_to domain_skill_url(@domain, @skill), notice: 'Skill was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,11 +78,12 @@ class SkillsController < ApplicationController
   # DELETE /skills/1
   # DELETE /skills/1.json
   def destroy
-    @skill = Skill.find(params[:id])
+    @domain = Domain.find(params[:domain_id])
+    @skill = @domain.skills.find(params[:id])
     @skill.destroy
 
     respond_to do |format|
-      format.html { redirect_to skills_url }
+      format.html { redirect_to domain_skills_url(@domain) }
       format.json { head :no_content }
     end
   end

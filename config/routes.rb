@@ -1,10 +1,9 @@
 Skillslist::Application.routes.draw do
   root :to => "domains#index"
 
-  resources :skills
-
-
-  resources :domains
+  resources :domains do
+    resources :skills
+  end
 
 
   # The priority is based upon order of creation:

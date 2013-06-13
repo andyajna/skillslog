@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h3>Domain: <%= link_to @domain.name, @domain %></h3>
+
 <p>
   <b>Name:</b>
   <%= @skill.name %>
@@ -26,5 +28,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_skill_path(@skill) %> |
-<%= link_to 'Back', skills_path %>
+<%= link_to 'Edit Skill', edit_domain_skill_path(@domain, @skill) %> |
+<%= link_to 'Back', @domain %>

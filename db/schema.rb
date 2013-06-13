@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613004457) do
+ActiveRecord::Schema.define(:version => 20130613014633) do
 
   create_table "domains", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(:version => 20130613004457) do
     t.date     "taught"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "domain_id"
   end
+
+  add_index "skills", ["domain_id"], :name => "index_skills_on_domain_id"
 
 end

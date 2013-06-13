@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @skill %> |
-<%= link_to 'Back', skills_path %>
+<%= link_to 'Show', domain_skill_path(@domain, @skill) %> |
+<%= link_to 'Back', domain_skills_path(@domain) %>
