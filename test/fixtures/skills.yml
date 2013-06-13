@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  standard: MyText
+  observed: 2013-06-13
+  performed: 2013-06-13
+  taught: 2013-06-13
+
+two:
+  name: MyString
+  standard: MyText
+  observed: 2013-06-13
+  performed: 2013-06-13
+  taught: 2013-06-13
