@@ -1,5 +1,9 @@
 Skillslist::Application.routes.draw do
+  devise_for :users
+
   root :to => "domains#index"
+
+  devise_for :users
 
   resources :domains do
     resources :skills

@@ -7,15 +7,13 @@
     <th>Stream</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @domains.each do |domain| %>
   <tr>
-    <td><%= domain.name %></td>
+    <td><%= link_to domain.name, domain %></td>
     <td><%= domain.curriculum %></td>
     <td><%= domain.stream %></td>
-    <td><%= link_to 'Show', domain %></td>
     <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
     <td><%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

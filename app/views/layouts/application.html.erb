@@ -5,8 +5,26 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
 </head>
 <body>
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<%= link_to 'skillslist', root_path, :class => :brand %>
+			<ul class="nav pull-right">
+				<li><%= link_to 'Domains', root_path, :class => :active %></li>
+				<li>Profile</li>
+				<li><% if user_signed_in? %>
+					<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+					<% else %>
+					<%= link_to "Sign In", new_user_session_path %>
+					<% end %></li>
+			</ul>
+		</div>
+	</div>
+</div>
 <div id="main">
 	<div class="container">
 		<div class="content">
