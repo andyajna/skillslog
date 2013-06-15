@@ -1,0 +1,22 @@
+<h4>Edit <%= @user.first %> <%= @user.last %></h4>
+
+<%= simple_form_for(@user, :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.input :first %>
+  <%= f.input :last %>
+  <% if current_user.role == "admin" %>
+    <%= f.input :role, collection: User::FULLROLES %>
+  <% else %>
+    <%= f.input :role, collection: User::ROLES %>
+  <% end %>
+  <%= f.input :email, placeholder: 'user@domain.com' %>
+  <%= f.input :password, hint: '(leave blank if you don\'t want to change it)' %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :current_password, hint: 'Type your current password to verify changes' %>
+  <%= f.button :submit %>
+<% end %>
+
+<h4>Cancel my account</h4>
+
+<p>Unhappy? <%= button_to "Cancel my account", user_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+
+<%= link_to "Back", :back %>

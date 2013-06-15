@@ -1,0 +1,15 @@
+<h3><%= @user.first %> <%= @user.last %>'s Profile</h3>
+<% if current_user.id == @user.id %>
+<% if can? :update, User %><%= link_to 'Edit Profile', edit_user_path %><% end %>
+<% if can? :destroy, User %> | <%= link_to 'Cancel my account', registration_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete %><% end %>
+<% end %>
+
+<p>&nbsp;</p>
+<p><b>Email:</b> <%= @user.email %></p>
+<p><b>Role:</b> <%= @user.role %></p>
+<p><b>Last Sign In:</b> <%= @user.last_sign_in_at %></p>
+<p>&nbsp;</p>
+
+
+
+

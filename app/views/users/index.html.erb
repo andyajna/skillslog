@@ -1,0 +1,35 @@
+<h3>List of Users</h3>
+
+<table class="user-list table">
+  <tr>
+    <th>First</th>
+    <th>Last</th>
+    <th>Type</th>
+    <th>Email</th>
+    <th>Last Visit</th>
+    <th><th>
+    <% if current_user.role == "admin" %>
+    <th><th>
+    <th><th>
+        <% else %>
+    <% end %>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.first %></td>
+    <td><%= user.last %></td>
+    <td><%= user.role %></td>
+    <td><%= user.email %></td>
+    <td><%= user.last_sign_in_at %></td>
+    <td><% if can? :read, User %><%= link_to 'Show', user %><% end %></td>
+    <% if current_user.role == "admin" %>
+    <td><% if can? :update, User %><%= link_to 'Edit', edit_user_path(user) %><% end %></td>
+    <td><% if can? :destroy, User %><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
+    <% else %>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

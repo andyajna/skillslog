@@ -1,9 +1,8 @@
 Skillslist::Application.routes.draw do
-  devise_for :users
-
   root :to => "domains#index"
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
+  resources :users, :only => [:index, :show, :edit, :update]
 
   resources :domains do
     resources :skills
