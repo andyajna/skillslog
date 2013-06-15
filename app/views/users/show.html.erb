@@ -21,9 +21,13 @@
   </tr>
   <% @user_histories = UserHistory.where(:user_id == @user.id) %>
   <% @user_histories.each do |user_history| %>
+  <% @dom = Domain.where(:id => user_history.domain_id) %>
+  <% dom_name = @dom[0].name %>
+  <% @skill = Skill.where(:id => user_history.skill_id) %>
+  <% skill_name = @skill[0].name %>
   <tr>
-  	<td><%= user_history.domain_id %></td>
-  	<td><%= user_history.skill_id %></td>
+  	<td><%= dom_name %></td>
+  	<td><%= skill_name %></td>
   	<td><%= user_history.date_observed %></td>
   	<td><%= user_history.date_done %></td>
   	<td><%= user_history.date_taught %></td>

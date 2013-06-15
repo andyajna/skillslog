@@ -15,9 +15,8 @@ class UserHistoriesController < ApplicationController
   # GET /user_histories/1
   # GET /user_histories/1.json
   def show
-    @domain = Domain.find(params[:domain_id])
-    @skill = @domain.skills.find(params[:skill_id])
-    @user_histories = @skill.user_histories.find(params[:id])
+    
+    @user_history = UserHistory.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

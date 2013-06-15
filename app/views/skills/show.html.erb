@@ -18,21 +18,42 @@
 <% @user_hist = @user_history[0] %>
 <p>
   <b>Observed:</b>
+  <% if @user_hist.date_observed %>
   <%= @user_hist.date_observed %>
+  <% else %>
+  Yet to observe
+  <% end %>
 </p>
 
 <p>
   <b>Performed:</b>
+  <% if @user_hist.date_done %>
   <%= @user_hist.date_done %>
+  <% else %>
+  Yet to do
+  <% end %>
 </p>
 
 <p>
   <b>Taught:</b>
+  <% if @user_hist.date_taught %>
   <%= @user_hist.date_taught %>
+  <% else %>
+  Yet to teach
+  <% end %>
 </p>
 <% else %>
-<%= link_to 'Update Dates', new_domain_skill_user_history_path(@domain, @skill) %>
+
 <% end %>
+
+<% if UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id).any? %>
+<% @user_history = UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id) %>
+<% @user_hist = @user_history[0] %>
+<% if @user_hist.date_observed || @user_hist.date_done || @user_hist.date_taught %>
+<%= link_to 'Update Dates', { :controller => :user_histories, :action => :edit, :id => @user_hist.id, :domain_id => @user_hist.domain_id, :skill_id => @user_hist.skill_id } %> |
+<% end %>
+<% end %>
+<%= link_to 'Add Dates', new_domain_skill_user_history_path(@domain, @skill) %> |
 
 
 <%= link_to 'Edit Skill', edit_domain_skill_path(@domain, @skill) %> |
