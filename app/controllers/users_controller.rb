@@ -11,6 +11,8 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+    @user_history = UserHistory.where(:user_id => @user.id)
+  
 
 		respond_to do |format|
            format.html # show.html.erb

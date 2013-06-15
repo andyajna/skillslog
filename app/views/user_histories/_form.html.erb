@@ -1,0 +1,13 @@
+<%= simple_form_for([@domain, @skill, @user_history]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :date_observed %>
+    <%= f.input :date_done %>
+    <%= f.input :date_taught %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :domain_id, :value => @domain.id %>
+    <%= f.hidden_field :skill_id, :value => @skill.id %>
+    <%= f.button :submit, 'Save Dates' %>
+  </div>
+<% end %>

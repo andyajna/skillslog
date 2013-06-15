@@ -12,20 +12,27 @@
   <%= @skill.standard %>
 </p>
 
+<!-- Show if there is a user_history for this user and this skill -->
+<% if UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id).any? %>
+<% @user_history = UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id) %>
+<% @user_hist = @user_history[0] %>
 <p>
   <b>Observed:</b>
-  <%= @skill.observed %>
+  <%= @user_hist.date_observed %>
 </p>
 
 <p>
   <b>Performed:</b>
-  <%= @skill.performed %>
+  <%= @user_hist.date_done %>
 </p>
 
 <p>
   <b>Taught:</b>
-  <%= @skill.taught %>
+  <%= @user_hist.date_taught %>
 </p>
+<% else %>
+<%= link_to 'Update Dates', new_domain_skill_user_history_path(@domain, @skill) %>
+<% end %>
 
 
 <%= link_to 'Edit Skill', edit_domain_skill_path(@domain, @skill) %> |

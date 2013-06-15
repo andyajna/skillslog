@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  domain_id: 1
+  skill_id: 1
+  date_observed: 2013-06-15
+  date_done: 2013-06-15
+  date_taught: 2013-06-15
+
+two:
+  user_id: 1
+  domain_id: 1
+  skill_id: 1
+  date_observed: 2013-06-15
+  date_done: 2013-06-15
+  date_taught: 2013-06-15

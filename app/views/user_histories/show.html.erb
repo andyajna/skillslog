@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_history.user_id %>
+</p>
+
+<p>
+  <b>Domain:</b>
+  <%= @user_history.domain_id %>
+</p>
+
+<p>
+  <b>Skill:</b>
+  <%= @user_history.skill_id %>
+</p>
+
+<p>
+  <b>Date observed:</b>
+  <%= @user_history.date_observed %>
+</p>
+
+<p>
+  <b>Date done:</b>
+  <%= @user_history.date_done %>
+</p>
+
+<p>
+  <b>Date taught:</b>
+  <%= @user_history.date_taught %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_history_path(@user_history) %> |
+<%= link_to 'Back', user_histories_path %>

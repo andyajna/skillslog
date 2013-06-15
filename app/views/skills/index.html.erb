@@ -4,9 +4,6 @@
   <tr>
     <th>Name</th>
     <th>Standard</th>
-    <th>Observed</th>
-    <th>Performed</th>
-    <th>Taught</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,9 +13,7 @@
   <tr>
     <td><%= skill.name %></td>
     <td><%= skill.standard %></td>
-    <td><%= skill.observed %></td>
-    <td><%= skill.performed %></td>
-    <td><%= skill.taught %></td>
+
     <td><%= link_to 'Show', domain_skill_path(@domain, skill) %></td>
     <td><%= link_to 'Edit', edit_domain_skill_path(@domain, skill) %></td>
     <td><%= link_to 'Destroy', domain_skill_path(@domain, skill), method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615020817) do
+ActiveRecord::Schema.define(:version => 20130615064605) do
 
   create_table "domains", :force => true do |t|
     t.string   "name"
@@ -24,15 +24,23 @@ ActiveRecord::Schema.define(:version => 20130615020817) do
   create_table "skills", :force => true do |t|
     t.string   "name"
     t.text     "standard"
-    t.date     "observed"
-    t.date     "performed"
-    t.date     "taught"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "domain_id"
   end
 
   add_index "skills", ["domain_id"], :name => "index_skills_on_domain_id"
+
+  create_table "user_histories", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "domain_id"
+    t.integer  "skill_id"
+    t.date     "date_observed"
+    t.date     "date_done"
+    t.date     "date_taught"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -1,13 +1,19 @@
 Skillslist::Application.routes.draw do
+
+
+
   root :to => "domains#index"
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :users, :only => [:index, :show, :edit, :update]
 
   resources :domains do
-    resources :skills
+    resources :skills do
+      resources :user_histories
+    end
   end
 
+  resources :user_histories
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

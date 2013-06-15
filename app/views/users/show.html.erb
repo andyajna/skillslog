@@ -10,6 +10,25 @@
 <p><b>Last Sign In:</b> <%= @user.last_sign_in_at %></p>
 <p>&nbsp;</p>
 
-
+<!-- Show what skills have been seen, done and taught -->
+<table class="table">
+  <tr>
+	<th>Domain</th>
+	<th>Skill</th>
+	<th>Observed</th>
+	<th>Done</th>
+	<th>Taught</th>
+  </tr>
+  <% @user_histories = UserHistory.where(:user_id == @user.id) %>
+  <% @user_histories.each do |user_history| %>
+  <tr>
+  	<td><%= user_history.domain_id %></td>
+  	<td><%= user_history.skill_id %></td>
+  	<td><%= user_history.date_observed %></td>
+  	<td><%= user_history.date_done %></td>
+  	<td><%= user_history.date_taught %></td>
+  	<% end %>
+  </tr>	
+</table>
 
 

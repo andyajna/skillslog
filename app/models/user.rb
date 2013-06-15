@@ -24,5 +24,6 @@ class User < ActiveRecord::Base
     :reject_if => :all_blank,
     :allow_destroy => true
  accepts_nested_attributes_for :skills
+ 
 
 end
