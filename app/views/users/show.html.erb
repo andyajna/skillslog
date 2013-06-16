@@ -10,29 +10,46 @@
 <p><b>Last Sign In:</b> <%= @user.last_sign_in_at %></p>
 <p>&nbsp;</p>
 
-<!-- Show what skills have been seen, done and taught -->
+
+<!-- Show what skills are yet to be attempted -->
+<h4>Achievement Record</h4>
 <table class="table">
   <tr>
-	<th>Domain</th>
-	<th>Skill</th>
-	<th>Observed</th>
-	<th>Done</th>
-	<th>Taught</th>
+    <th>Curriculum</th>  
+    <th>Domain</th>
+    <th>Skills<th>
+    <th>Observed</th>
+    <th>Done</th>
+    <th>Taught</th>
   </tr>
-  <% @user_histories = UserHistory.where(:user_id == @user.id) %>
-  <% @user_histories.each do |user_history| %>
-  <% @dom = Domain.where(:id => user_history.domain_id) %>
-  <% dom_name = @dom[0].name %>
-  <% @skill = Skill.where(:id => user_history.skill_id) %>
-  <% skill_name = @skill[0].name %>
-  <tr>
-  	<td><%= dom_name %></td>
-  	<td><%= skill_name %></td>
-  	<td><%= user_history.date_observed %></td>
-  	<td><%= user_history.date_done %></td>
-  	<td><%= user_history.date_taught %></td>
-  	<% end %>
-  </tr>	
+  <% @domains = Domain.all %>
+  <% @domains.each do |domain| %>
+    <% @skills = domain.skills %>
+    <% @skills.each do |skill| %>
+      <% if @user_history = UserHistory.where(:skill_id => skill.id).any? %>
+      <% @user_history = UserHistory.where(:skill_id => skill.id) %>
+      <% user_history = @user_history[0] %>
+      <tr>
+        <td><%= domain.curriculum %></td>
+        <td><%= domain.name %></td>
+        <td><%= skill.name %></td>
+        <td><%= user_history.date_observed %></td>
+        <td><%= user_history.date_done %></td>
+        <td><%= user_history.date_taught %></td>
+      </tr> 
+      <% else %>
+      <tr>
+        <td><%= domain.curriculum %></td>
+        <td><%= domain.name %></td>
+        <td><%= skill.name %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr> 
+      <% end %>
+    <% end %>
+  <% end %>
+
 </table>
 
 
