@@ -13,7 +13,8 @@ class Ability
        elsif user.role == "intern" || user.role == "resident"
          can :read, Domain
          can :read, Skill
-         can :manage, User, :user_id => user.id
+
+         can :crud, User, :user_id => user.id
          cannot :create, User, :role => "admin"
        elsif user.role.blank?
          can :update, User, :user_id => user.id

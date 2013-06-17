@@ -7,7 +7,7 @@
 <p>&nbsp;</p>
 <p><b>Email:</b> <%= @user.email %></p>
 <p><b>Role:</b> <%= @user.role %></p>
-<p><b>Last Sign In:</b> <%= @user.last_sign_in_at %></p>
+<p><b>Last Sign In:</b> <%= @user.last_sign_in_at.localtime %></p>
 <p>&nbsp;</p>
 
 
@@ -17,7 +17,7 @@
   <tr>
     <th>Curriculum</th>  
     <th>Domain</th>
-    <th>Skills<th>
+    <th>Skill <em>(click to update dates)</em><th>
     <th>Observed</th>
     <th>Done</th>
     <th>Taught</th>
@@ -26,30 +26,25 @@
   <% @domains.each do |domain| %>
     <% @skills = domain.skills %>
     <% @skills.each do |skill| %>
-      <% if @user_history = UserHistory.where(:skill_id => skill.id).any? %>
-      <% @user_history = UserHistory.where(:skill_id => skill.id) %>
-      <% user_history = @user_history[0] %>
       <tr>
         <td><%= domain.curriculum %></td>
         <td><%= domain.name %></td>
-        <td><%= skill.name %></td>
+        <td><%= link_to skill.name, domain_skill_path(domain, skill) %></td>
+        <% if @user_history = UserHistory.where(:user_id => @user.id, :skill_id => skill.id).any? %>
+        <% @user_history = UserHistory.where(:user_id => @user.id, :skill_id => skill.id) %>
+        <% user_history = @user_history[0] %>
+        <td></td>
         <td><%= user_history.date_observed %></td>
         <td><%= user_history.date_done %></td>
         <td><%= user_history.date_taught %></td>
+        <% else %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <% end %>
       </tr> 
-      <% else %>
-      <tr>
-        <td><%= domain.curriculum %></td>
-        <td><%= domain.name %></td>
-        <td><%= skill.name %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr> 
-      <% end %>
     <% end %>
   <% end %>
-
 </table>
-
 

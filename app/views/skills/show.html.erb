@@ -52,9 +52,9 @@
 <% if @user_hist.date_observed || @user_hist.date_done || @user_hist.date_taught %>
 <%= link_to 'Update Dates', { :controller => :user_histories, :action => :edit, :id => @user_hist.id, :domain_id => @user_hist.domain_id, :skill_id => @user_hist.skill_id } %> |
 <% end %>
-<% end %>
+<% else %>
 <%= link_to 'Add Dates', new_domain_skill_user_history_path(@domain, @skill) %> |
-
+<% end %>
 
 <%= link_to 'Edit Skill', edit_domain_skill_path(@domain, @skill) %> |
 <%= link_to 'Back', @domain %>

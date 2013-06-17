@@ -10,7 +10,16 @@ class UsersController < ApplicationController
   	end
 
 	def show
-		@user = User.find(params[:id])
+
+    if params[:id].nil? # if there is no user id in params, show current one
+    @user = current_user
+     # if there is the user id in params just use it, 
+     # maybe get 'authorization failed'
+    else
+      @user = User.find(params[:id])
+    end
+
+		
     @user_history = UserHistory.where(:user_id => @user.id)
   
   
@@ -22,6 +31,7 @@ class UsersController < ApplicationController
 	end
 
   def edit
+
     @user = User.find(params[:id])
   end
 

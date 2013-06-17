@@ -22,8 +22,8 @@
     <td><%= user.role %></td>
     <td><%= user.email %></td>
     <td><%= user.last_sign_in_at %></td>
-    <td><% if can? :read, User %><%= link_to 'Show', user %><% end %></td>
     <% if current_user.role == "admin" %>
+    <td><% if can? :read, User %><%= link_to 'Show', user %><% end %></td>
     <td><% if can? :update, User %><%= link_to 'Edit', edit_user_path(user) %><% end %></td>
     <td><% if can? :destroy, User %><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
     <% else %>
