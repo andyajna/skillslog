@@ -1,6 +1,6 @@
-<h1>Editing skill</h1>
+<h3>Edit Skill: <%= @skill.name %></h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', domain_skill_path(@domain, @skill) %> |
-<%= link_to 'Back', domain_skills_path(@domain) %>
+<%= link_to 'Cancel Update', domain_skill_path(@domain, @skill) %>
+

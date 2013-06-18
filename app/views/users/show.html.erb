@@ -6,28 +6,28 @@
 
 <p>&nbsp;</p>
 <p><b>Email:</b> <%= @user.email %></p>
-<p><b>Role:</b> <%= @user.role %></p>
+<p><b>Level:</b> <%= @user.role %></p>
 <p><b>Last Sign In:</b> <%= @user.last_sign_in_at.localtime %></p>
 <p>&nbsp;</p>
 
 
 <!-- Show what skills are yet to be attempted -->
-<h4>Achievement Record</h4>
+<h4>Skills Record</h4>
+<% @domains = Domain.all %>
+  <% @domains.each do |domain| %>
+  <p>Curriculum: <%= domain.curriculum %></p>
 <table class="table">
   <tr>
-    <th>Curriculum</th>  
     <th>Domain</th>
     <th>Skill <em>(click to update dates)</em><th>
     <th>Observed</th>
     <th>Done</th>
     <th>Taught</th>
   </tr>
-  <% @domains = Domain.all %>
-  <% @domains.each do |domain| %>
+  
     <% @skills = domain.skills %>
     <% @skills.each do |skill| %>
       <tr>
-        <td><%= domain.curriculum %></td>
         <td><%= domain.name %></td>
         <td><%= link_to skill.name, domain_skill_path(domain, skill) %></td>
         <% if @user_history = UserHistory.where(:user_id => @user.id, :skill_id => skill.id).any? %>
@@ -45,6 +45,6 @@
         <% end %>
       </tr> 
     <% end %>
-  <% end %>
+  
 </table>
-
+<% end %>

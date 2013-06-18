@@ -52,10 +52,20 @@ class UsersController < ApplicationController
       
       # Sign in the user bypassing validation in case his password changed
      
-      redirect_to users_url
+      redirect_to user_url
     else
       render "edit"
     end
     
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.json { head :no_content }
+    end
   end
 end

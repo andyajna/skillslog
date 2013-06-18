@@ -71,7 +71,7 @@ class UserHistoriesController < ApplicationController
 
     respond_to do |format|
       if @user_history.update_attributes(params[:user_history])
-        format.html { redirect_to @user_history, notice: 'User history was successfully updated.' }
+        format.html { redirect_to domain_skill_path(@domain, @skill), notice: 'User history was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

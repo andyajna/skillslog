@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @domain.name %>
-</p>
+<h3>Domain:
+  <%= @domain.name %></h3>
+<%= link_to 'Edit this Domain', edit_domain_path(@domain) %> |
+<%= link_to 'Show The List of Domains', domains_path %> |
+<%= link_to 'Add A New Skill To This Domain', new_domain_skill_path(@domain) %>
+<p>&nbsp;</p>
 
 <p>
   <b>Curriculum:</b>
@@ -16,12 +18,10 @@
 </p>
 
 <!-- List Skills -->
-<p><b>Skills:</b></p>
+<p><b>Skills In This Domain:</b></p>
 <% @domain.skills.each do |skill| %>
 	<%= link_to skill.name, domain_skill_path(@domain, skill) %><br />
 	<% end %>
 <p>&nbsp;</p>	
 
-<%= link_to 'Edit', edit_domain_path(@domain) %> |
-<%= link_to 'Back', domains_path %> |
-<%= link_to 'New Skill', new_domain_skill_path(@domain) %>
+

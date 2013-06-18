@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Skillslist</title>
+  <title>Skills Log</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -12,7 +12,7 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-inner">
 		<div class="container">
-			<%= link_to 'skillslist', root_path, :class => :brand %>
+			<%= link_to 'Medical Skills Log', root_path, :class => :brand %>
 			<ul class="nav pull-right">
 				<% if user_signed_in? %>
 				<li><%= link_to 'Profile', current_user %></li>

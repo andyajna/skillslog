@@ -1,23 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Domain: <%= link_to @domain.name, @domain %></h3>
+
+
+<h3>Skill:
+  <%= @skill.name %>
+</h3>
+
+
+
+<%= link_to 'Edit Skill', edit_domain_skill_path(@domain, @skill) %> |
+<% dname = @domain.name %><%= link_to "Back to #{ dname } Domain", @domain %>
+<p>&nbsp;</p>
 
 <p>
-  <b>Name:</b>
-  <%= @skill.name %>
+  <b>Domain:</b> <%= @domain.name %>
 </p>
 
 <p>
-  <b>Standard:</b>
+  <b>Skill Standard:</b>
   <%= @skill.standard %>
 </p>
+<p>&nbsp;</p>
 
 <!-- Show if there is a user_history for this user and this skill -->
 <% if UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id).any? %>
 <% @user_history = UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id) %>
 <% @user_hist = @user_history[0] %>
 <p>
-  <b>Observed:</b>
+  <b>Date Observed:</b>
   <% if @user_hist.date_observed %>
   <%= @user_hist.date_observed %>
   <% else %>
@@ -26,7 +36,7 @@
 </p>
 
 <p>
-  <b>Performed:</b>
+  <b>Date Performed:</b>
   <% if @user_hist.date_done %>
   <%= @user_hist.date_done %>
   <% else %>
@@ -35,7 +45,7 @@
 </p>
 
 <p>
-  <b>Taught:</b>
+  <b>Date Taught:</b>
   <% if @user_hist.date_taught %>
   <%= @user_hist.date_taught %>
   <% else %>
@@ -46,15 +56,14 @@
 
 <% end %>
 
+<p>&nbsp;</p>
+
 <% if UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id).any? %>
 <% @user_history = UserHistory.where(:user_id => current_user.id, :skill_id => @skill.id) %>
 <% @user_hist = @user_history[0] %>
 <% if @user_hist.date_observed || @user_hist.date_done || @user_hist.date_taught %>
-<%= link_to 'Update Dates', { :controller => :user_histories, :action => :edit, :id => @user_hist.id, :domain_id => @user_hist.domain_id, :skill_id => @user_hist.skill_id } %> |
+<%= link_to 'Update Dates', { :controller => :user_histories, :action => :edit, :id => @user_hist.id, :domain_id => @user_hist.domain_id, :skill_id => @user_hist.skill_id } %>
 <% end %>
 <% else %>
-<%= link_to 'Add Dates', new_domain_skill_user_history_path(@domain, @skill) %> |
+<%= link_to 'Add Achievement Dates', new_domain_skill_user_history_path(@domain, @skill) %>
 <% end %>
-
-<%= link_to 'Edit Skill', edit_domain_skill_path(@domain, @skill) %> |
-<%= link_to 'Back', @domain %>

@@ -1,5 +1,5 @@
-<h3>Add Skills Dates</h3>
+<h3>Update Skill: <%= @skill.name %></h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', domain_skill_user_histories_path(@domain, @skill) %>
+<%= link_to 'Back to skill page', domain_skill_path(@domain, @skill) %>

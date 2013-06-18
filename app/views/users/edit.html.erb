@@ -6,7 +6,7 @@
   <% if current_user.role == "admin" %>
     <%= f.input :role, collection: User::FULLROLES %>
   <% else %>
-    <%= f.input :role, collection: User::FULLROLES %>
+    <%= f.input :role, collection: User::ROLES %>
   <% end %>
   <%= f.input :email, placeholder: 'user@domain.com' %>
   <%= f.input :password, hint: '(leave blank if you don\'t want to change it)' %>

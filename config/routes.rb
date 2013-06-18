@@ -5,7 +5,7 @@ Skillslist::Application.routes.draw do
   root :to => "domains#index"
 
   devise_for :users
-  resources :users, :only => [:index, :show, :edit, :update]
+  resources :users, :only => [:index, :show, :edit, :update, :destroy]
 
 
   resources :domains do
